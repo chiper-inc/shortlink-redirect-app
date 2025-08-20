@@ -6,8 +6,8 @@ export default async function Fallback({
   const { to } = await searchParams;
   return (
     <h1>
-      Could not open the app. URL ({to}){' '}
-      <a href={to as unknown as string}>Install it here</a>
+      Could not open the app
+      <a href={to as unknown as string}> Install it here ({to})</a>
     </h1>
   );
 

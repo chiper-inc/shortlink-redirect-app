@@ -4,7 +4,11 @@ export default async function Success({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { to } = await searchParams;
-  return <h1>App opened successfully! URL ({to})</h1>;
+  return (
+    <h1>
+      App opened successfully! <p>Deeplink ({to})</p>
+    </h1>
+  );
 
   // TODO incluir un card con:
   // - Información indicado que se lanzó la aplicación
