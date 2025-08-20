@@ -22,7 +22,6 @@ export default function RedirectPage({
     }
     // Attempt to open the app
     window.location.href = redirectTo.href;
-    console.log(`Opening app with session ID: ${sessionId}`);
 
     const intervalObj = setInterval(async () => {
       const res = await fetch(`/api/session/${sessionId}`);
@@ -38,7 +37,7 @@ export default function RedirectPage({
     const timeoutObj = setTimeout(() => {
       clearInterval(intervalObj);
       redirect(`/redirect/fallback?to=${redirectTo.fallback}`);
-    }, timeout * 8);
+    }, timeout * 4);
 
     return () => {
       clearInterval(intervalObj);
@@ -48,9 +47,11 @@ export default function RedirectPage({
 
   return (
     <div>
-      Opening App... Status: {status}
-      <p>{redirectTo.href}</p>
-      <p>{redirectTo.fallback}</p>
+      {/* Opening App... Status: {status}
+      <p>href: {redirectTo.href}</p>
+      <p>fallback: {redirectTo.fallback}</p> */}
     </div>
   );
+
+  // TODO Card con el progreso de la apertura de la app
 }
