@@ -1,10 +1,13 @@
-export default function Fallback() {
+export default async function Fallback({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const { to } = await searchParams;
   return (
     <h1>
-      Could not open the app.{' '}
-      <a href="https://play.google.com/store/apps/details?id=com.myapp">
-        Install it here
-      </a>
+      Could not open the app. URL ({to}){' '}
+      <a href={to as unknown as string}>Install it here</a>
     </h1>
   );
 

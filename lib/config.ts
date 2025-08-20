@@ -8,6 +8,7 @@ const envSchema = Joi.object({
   IOS_SCHEMA_LINK: Joi.string().uri().required(),
   IOS_UNIVERSAL_LINK: Joi.string().uri().required(),
   IOS_STORE_URL: Joi.string().uri().required(),
+  IOS_STORE_URL_CHROME: Joi.string().uri().required(),
   IOS_TIMEOUT_MS: Joi.number().default(5000),
   ANDROID_APP_LINK_HOST: Joi.string().required(),
   ANDROID_APP_LINK_PATH: Joi.string().required(),
@@ -39,6 +40,7 @@ export const appConfig = {
   },
   ios: {
     installUrl: envVars.IOS_STORE_URL,
+    installUrlChrome: envVars.IOS_STORE_URL_CHROME,
     universalLink: envVars.IOS_UNIVERSAL_LINK,
     schemaLink: envVars.IOS_SCHEMA_LINK,
     // schemaLink: envVars.IOS_UNIVERSAL_LINK,

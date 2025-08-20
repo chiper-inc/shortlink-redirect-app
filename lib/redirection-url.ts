@@ -12,21 +12,26 @@ export const generateUrlForUserAgent = (
   sessionId: string,
 ): IUrlUserAgent => {
   const { android, ios } = appConfig;
+  const path = '/open?';
 
   if (isAndroid) {
-    const { host, path, packageName, installUrl } = android;
+    const { host, packageName, installUrl } = android;
     const pkg = encodeURIComponent(packageName);
     const fallback = encodeURIComponent(installUrl);
     const schema = 'https';
-    const href = `intent://${host}${path}#Intent;scheme=${schema};package=${pkg};S.browser_fallback_url=${fallback};end`;
+    const href = `intent://${host}${path}?sessionId=${sessionId}#Intent;scheme=${schema};package=${pkg};S.browser_fallback_url=${fallback};end`;
     return { href, fallback };
   }
 
-  if (isIOS) {
-    const fallback = encodeURIComponent(ios.installUrl);
-    const href = isChrome
-      ? `${ios.schemaLink}?session=${sessionId}`
-      : `${appConfig.ios.universalLink}?session=${sessionId}`;
+  if (isIOS && isChrome) {
+    const fallback = ios.installUrlChrome;
+    const href = `${ios.schemaLink}${path}?sessionId=${sessionId}`;
+    return { href, fallback };
+  }
+
+  if (isIOS && !isChrome) {
+    const fallback = ios.installUrl;
+    const href = `${appConfig.ios.universalLink}?sessionId=${sessionId}`;
     return { href, fallback };
   }
 
