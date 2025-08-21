@@ -9,6 +9,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+COPY ./secrets/chiper-fcm-staging.json /app/secrets/chiper-fcm-staging.json
 RUN npm run build
 
 # Production image, copy built assets and run
