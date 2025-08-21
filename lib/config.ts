@@ -22,7 +22,12 @@ class ConfigService {
       FIREBASE_SERVICE_ACCOUNT: Joi.string().required(),
       FIREBASE_PROJECT_ID: Joi.string().required(),
       PORT: Joi.number().default(3000),
-      NODE_ENV: Joi.string().valid('development', 'staging', 'production'),
+      NODE_ENV: Joi.string().valid(
+        'development',
+        'staging',
+        'test',
+        'production',
+      ),
       IOS_SCHEMA_LINK: Joi.string().required(),
       IOS_STORE_URL_CHROME: Joi.string().uri().required(),
       IOS_TIMEOUT_MS: Joi.number().default(5000),
