@@ -1,5 +1,6 @@
 import admin from 'firebase-admin';
 import fs from 'fs';
+import { appConfig } from './config';
 
 class FirebaseAdminService {
   private static instance: FirebaseAdminService | null = null;
@@ -19,7 +20,7 @@ class FirebaseAdminService {
   }
 
   private initializeFirebase(): admin.firestore.Firestore {
-    const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT;
+    const { serviceAccountPath, project } = appConfig.firestore;
     if (!serviceAccountPath) {
       throw new Error('SERVICE_ACCOUNT_PATH env variable is not set');
     }
@@ -31,11 +32,11 @@ class FirebaseAdminService {
     if (!admin.apps.length) {
       console.log('Initializing Firebase Admin SDK');
       console.log('Using service account from:', serviceAccountPath);
-      console.log('Using project ID:', process.env.FIREBASE_PROJECT_ID);
+      console.log('Using project ID:', project);
 
       admin.initializeApp({
         credential: admin.credential.cert(serviceAccount),
-        projectId: process.env.FIREBASE_PROJECT_ID,
+        projectId: project,
       });
     }
 

@@ -45,7 +45,7 @@ class ConfigService {
     return {
       firestore: {
         project: envVars.FIREBASE_PROJECT_ID,
-        serviceAccount: envVars.FIREBASE_SERVICE_ACCOUNT,
+        serviceAccountPath: envVars.FIREBASE_SERVICE_ACCOUNT,
       },
       next: {
         url: envVars.NEXT_PUBLIC_API_URL,
