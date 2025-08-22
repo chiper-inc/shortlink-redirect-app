@@ -1,11 +1,18 @@
-export default function QRInstalationPage({ to }: { to: string }) {
+interface QRInstalationPageProps {
+  to?: string;
+  qrSrc?: string;
+  size?: number;
+}
+
+export default function QRInstalationPage({ to, qrSrc = "/QR.png", size = 160 }: QRInstalationPageProps) {
   return (
-    <div>
-      <h1>Installation Instructions</h1>
-      <p>Scan the QR code below to install the app:</p>
-      <a href={to}>Download App ({to})</a>
+    <div className="w-full flex flex-col items-center justify-center">
+      <img
+        src={qrSrc}
+        alt="QR code to install app"
+        style={{ width: size, height: size }}
+        className="rounded-xl border border-[#E5EAF2] bg-[#F5F7FB]"
+      />
     </div>
   );
-
-  // TODO incluir una card para mostrar el código QR y texto indicando que se debe escanear el QR desde el movil para instalar la app
 }
