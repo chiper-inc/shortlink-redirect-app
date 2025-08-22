@@ -66,7 +66,7 @@ export default function RedirectPage({
       <div className="w-full max-w-md rounded-3xl border border-[#E5EAF2] bg-white p-8 text-center shadow-[0_20px_60px_rgba(47,46,79,0.08)]">
         <div className="mx-auto mb-6 flex items-center justify-center">
           <img
-            src="/logo.png"
+            src="/CHIPER_LOGO.png"
             alt="Chiper Logo"
             width={84}
             height={84}
