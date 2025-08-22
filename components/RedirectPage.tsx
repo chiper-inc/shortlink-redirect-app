@@ -48,7 +48,9 @@ export default function RedirectPage({
     const timeoutObj = setTimeout(() => {
       clearInterval(intervalObj);
       clearInterval(progressInterval);
-      redirect(`/redirect/fallback?to=${redirectTo.fallback}`);
+      redirect(
+        `/redirect/fallback?to=${redirectTo.fallback}&os=${redirectTo.osName}`,
+      );
     }, totalTime);
 
     return () => {
