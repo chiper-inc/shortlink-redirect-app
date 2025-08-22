@@ -36,7 +36,9 @@ export default function RedirectPage({
     // Timeout fallback to store
     const timeoutObj = setTimeout(() => {
       clearInterval(intervalObj);
-      redirect(`/redirect/fallback?to=${redirectTo.fallback}`);
+      redirect(
+        `/redirect/fallback?to=${redirectTo.fallback}&os=${redirectTo.osName}`,
+      );
     }, timeout * 4);
 
     return () => {
