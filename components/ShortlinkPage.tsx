@@ -9,6 +9,7 @@ import QRInstalationPage from '@/components/QRInstalationPage';
 interface IUrlUserAgent {
   href: string | null;
   fallback: string;
+  osName: string;
 }
 
 interface IDetectUserAgent {
@@ -45,22 +46,22 @@ const generateUrlForUserAgent = (
     const fallback = encodeURIComponent(installUrl);
     const schema = 'https';
     const href = `intent://${host}${path}#Intent;scheme=${schema};package=${pkg};S.browser_fallback_url=${fallback};end`;
-    return { href, fallback };
+    return { href, fallback, osName: 'android' };
   }
 
   if (isIOS && isChrome) {
     const fallback = ios.installUrlChrome;
     const href = `${ios.schemaLink}/${path}`; // the / is required
-    return { href, fallback };
+    return { href, fallback, osName: 'ios' };
   }
 
   if (isIOS && !isChrome) {
     const fallback = ios.installUrl;
     const href = `${appConfig.ios.universalLink}${path}`;
-    return { href, fallback };
+    return { href, fallback, osName: 'ios' };
   }
 
-  return { href: null, fallback: '/installation' };
+  return { href: null, fallback: '/installation', osName: 'unknown' };
 };
 
 export default async function ShortlinkPage({
